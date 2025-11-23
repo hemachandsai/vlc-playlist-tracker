@@ -31,6 +31,23 @@ Go to **Preferences → Show All (bottom left)** → **Playlist**:
 
 These ensure VLC builds a flat, predictable playlist so the extension can restore file positions accurately.
 
+
+## 📝 Technical Note: Playlist ID's vs Index
+
+VLC assigns a **dynamic playlist ID** to each media item, and these IDs are *not consistent* across sessions or when a folder is reopened.  
+However, the **playlist index** (the position of the file inside the playlist/folder) is always stable.
+
+Because `vlc.playlist.goto()` only accepts **IDs**, the extension must translate between the two.  
+
+To handle this reliably, the extension uses helper functions to:
+
+- map **index → id** when restoring playback  
+- map **id → index** when saving progress  
+
+This is why the extension uses custom helper functions like `get_id_for_index()` and `get_index_for_id()` to reliably translate between VLC’s unstable IDs and stable playlist positions.
+
+This index–ID mapping is the core trick that allows the extension to resume the correct file every time, even across complex or nested folder structures.
+
 ## 📥 Installation
 
 ### 1. Locate your VLC extensions folder

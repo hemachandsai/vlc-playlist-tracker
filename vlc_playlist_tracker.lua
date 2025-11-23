@@ -219,6 +219,11 @@ function input_changed()
     update_state()
 end
 
+-- Called when metadata of the current item changes
+function meta_changed()
+    vlc.msg.dbg("PTracker: meta_changed() triggered")
+end
+
 -- Called when the extension is loaded
 function activate()
     config.state_file = vlc.config.homedir() .. "/vlc_playlist_state.json"
