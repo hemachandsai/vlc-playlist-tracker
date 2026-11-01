@@ -37,7 +37,7 @@ These ensure VLC builds a flat, predictable playlist so the extension can restor
 VLC assigns a **dynamic playlist ID** to each media item, and these IDs are *not consistent* across sessions or when a folder is reopened.  
 However, the **playlist index** (the position of the file inside the playlist/folder) is always stable.
 
-Because `vlc.playlist.goto()` only accepts **IDs**, the extension must translate between the two.  
+Because `vlc.playlist.gotoitem()` only accepts **IDs**, the extension must translate between the two.  
 
 To handle this reliably, the extension uses helper functions to:
 

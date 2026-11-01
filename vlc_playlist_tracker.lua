@@ -255,7 +255,7 @@ function activate()
     local id = get_id_for_index(saved)
     if id then
         vlc.msg.dbg("PTracker: Restoring via item ID " .. tostring(id))
-        vlc.playlist.goto(id)
+        vlc.playlist.gotoitem(id)
     else
         vlc.msg.dbg("PTracker: Index exists but corresponding ID is not yet available")
     end
